@@ -1,0 +1,60 @@
+{
+  "name": "svelte-styled-system",
+  "version": "0.0.5",
+  "description": "Using the idea of styled-system with svelte",
+  "source": "src/index.js",
+  "main": "dist/index.js",
+  "module": "dist/index.es.js",
+  "umd:main": "dist/index.umd.js",
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "author": "Manu Schiller <hello@manuschiller.dev>",
+  "repository": "manuschillerdev/svelte-styled-system",
+  "license": "MIT",
+  "sideEffects": false,
+  "scripts": {
+    "bundle": "microbundle",
+    "clean": "rm -rf dist",
+    "bundlesize": "bundlesize",
+    "build": "yarn test && yarn clean && yarn microbundle && yarn bundlesize",
+    "test": "ava src/test.js"
+  },
+  "bundlesize": [
+    {
+      "path": "./dist/index.js",
+      "maxSize": "1 Kb",
+      "compression": "brotli"
+    }
+  ],
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "**/*.{js,ts,json,md}": [
+      "prettier --write",
+      "git add"
+    ]
+  },
+  "ava": {
+    "require": [
+      "esm"
+    ]
+  },
+  "dependencies": {
+    "dlv": "^1.1.3",
+    "goober": "^1.6.3"
+  },
+  "devDependencies": {
+    "ava": "^3.0.0",
+    "bundlesize": "^0.18.0",
+    "esm": "^3.2.25",
+    "husky": "^4.0.10",
+    "lint-staged": "^9.5.0",
+    "microbundle": "^0.11.0",
+    "prettier": "^1.19.1"
+  }
+}
